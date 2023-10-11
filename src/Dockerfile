@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["website-hangfire/website-hangfire.csproj", "website-hangfire/"]
-RUN dotnet restore "website-hangfire/website-hangfire.csproj"
+COPY ["src/website-hangfire.csproj", "src/"]
+RUN dotnet restore "src/website-hangfire.csproj"
 COPY . .
-WORKDIR "/src/website-hangfire"
+WORKDIR "/src/src"
 RUN dotnet build "website-hangfire.csproj" -c Release -o /app/build
 
 FROM build AS publish
