@@ -29,4 +29,4 @@ jobs:
             context: .
             push: true
             tags: ngapham0705/website-hangfire:latest
-            file: ./src/website-hangfire/Dockerfile
+            file: ./src/Dockerfile
