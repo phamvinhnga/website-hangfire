@@ -1,0 +1,32 @@
+name: Deloy to server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+
+    steps:
+        - uses: actions/checkout@v3
+
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v2
+          with:
+            username: ngapham0705
+            password: ${{ secrets.DOCKER_PASSWORD }}
+
+        - name: Build and push Docker image
+          id: docker_build
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: ngapham0705/website-hangfire:latest
+            file: ./src/website-hangfire/Dockerfile

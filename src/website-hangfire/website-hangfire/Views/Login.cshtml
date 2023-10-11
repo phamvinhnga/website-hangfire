@@ -1,0 +1,25 @@
+﻿@page
+@using Website.Views;
+@model LoginModel
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.Input.Username)
+                @Html.TextBoxFor(m => m.Input.Username, "", new { @class = "form-control", @placeholder = "Username" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Input.Password)
+                @Html.PasswordFor(m => m.Input.Password, new { @class = "form-control", @placeholder = "Password" })
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+            </div>
+        }
+    </div>
+</div>
+

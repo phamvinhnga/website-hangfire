@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+    website-hangfire:
+        image: ngapham0705/website-hangfire:latest
+        container_name: website-hangfire
+        networks:
+            - website-network
+        restart: always
+        volumes:
+            - website-hangfire-volume:/var/lib/website-hangfire
+            - ./upload:/upload
+        ports:
+            - 5300
+        environment:
+            - ConnectionString__Server=${MYSQL_SERVER}
+            - ConnectionString__Database=${MYSQL_DATABASE}
+            - ConnectionString__UserId=${MYSQL_ROOT_USER}
+            - ConnectionString__Password=${MYSQL_ROOT_PASSWORD}
+            - ConnectionString__Port=3306
+            - ConnectionString__Version=8.0.33
+            - JWT__SecurityKey=ABC_C421AAEE0D114E9C
+            - JWT__ValidIssuer=ABC
+            - JWT__ValidAudience=ABC
+            - JWT__Expires=1
+            - JWT__ExpiresRefreshToken=2
+            - Upload__Folder=/upload
+            - Upload__Url=http://schedule.huyenduc.click/api/file/{0}/{1}
+            - ASPNETCORE_URLS=http://0.0.0.0:5300
+
+volumes:
+    website-hangfire-volume:
+        name: website-hangfire-volume
+
+networks:
+  website-network:
+    external: true
+    name: website-network

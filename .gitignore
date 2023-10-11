@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+.angular/
+package-lock.json
+
+# Net
+Properties/
+.config/
+.vs
+.vscode
+obj/
+bin/
+
+App_Data/
+
+# System files
+.DS_Store
+.idea/.idea.Website/.idea/vcs.xml
+.idea/.idea.Website/.idea/deployment.xml
